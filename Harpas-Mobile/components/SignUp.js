@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import { SafeAreaView } from "react-native";
 
 const SignUp = ({navigation, route}) => {
   const [password, setPassword] = useState("");
@@ -16,9 +17,9 @@ const SignUp = ({navigation, route}) => {
   };
 
   return (
-    <View>
+    <SafeAreaView>
       <View style={styles.judul}>
-        <Text style={{ fontSize: 40, fontWeight: "bold" }}>Sign Up</Text>
+        <Text style={{ fontSize: 40, fontWeight: "bold" ,marginTop:30,}}>Sign Up</Text>
         <Text>Create an account, it’s free</Text>
       </View>
 
@@ -38,12 +39,17 @@ const SignUp = ({navigation, route}) => {
       </View>
 
       <View style={{ marginTop: 20 }}>
-        <Text style={{ marginLeft: 48, color: "blue" }}>Password</Text>
+        <Text style={{ marginLeft: 48 }}>Password</Text>
       </View>
 
       <View style={{ alignItems: "center", marginTop: 5 }}>
         <View style={styles.passwordContainer}>
-          <TextInput style={styles.textemail} secureTextEntry={!showPassword} value={password} onChangeText={setPassword} /> 
+          <TextInput
+            style={styles.textpassword}
+            secureTextEntry={!showPassword}
+            value={password}
+            onChangeText={setPassword}
+          />
           <TouchableOpacity style={styles.eyeIcon} onPress={toggleShowPassword}>
             <FontAwesome5 name={showPassword ? "eye-slash" : "eye"} size={18} color={"black"} />
           </TouchableOpacity>
@@ -57,9 +63,12 @@ const SignUp = ({navigation, route}) => {
       </View>
 
       <View style={styles.bawah}>
-        <Text>Already have an account? SignIn</Text>
+        <Text >Already have an account? </Text>
+        <TouchableOpacity  onPress={() => navigation.navigate('SignIn')}>
+          <Text style={{ color: "blue" }}>SignIn</Text>
+        </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -72,6 +81,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     color: "blue",
     width: 300,
+    height: 50,
+    padding: 5,
+    borderRadius: 10,
+  },
+
+  textpassword:{
+    flex: 1,
+    width: 260,
     height: 50,
     padding: 5,
     borderRadius: 10,
@@ -99,7 +116,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 300,
-    width: 200,
+    width: 150,
   },
   buttonText: {
     color: "#fff",
@@ -111,6 +128,8 @@ const styles = StyleSheet.create({
   bawah: {
     alignItems: "center",
     marginTop: 20,
+    flexDirection: "row",
+    justifyContent: "center"
   },
 });
 
